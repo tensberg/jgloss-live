@@ -42,6 +42,13 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.8'
 }
 
-task distDocker(type: Docker) {
-    exposePort 8080
+task buildDocker(type: Docker, dependsOn: build) {
+    applicationName = jar.baseName
+    dockerfile = file('src/main/docker/Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
+    }
 }
