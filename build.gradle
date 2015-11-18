@@ -30,8 +30,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'net.sf.jgloss:jgloss-core:2.1.2'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'com.google.guava:guava:19.0-rc2'
 
     testCompile 'junit:junit'
     testCompile 'org.mockito:mockito-core'

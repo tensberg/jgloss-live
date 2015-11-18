@@ -19,14 +19,30 @@
  *
  */
 
-package net.sf.jgloss.live;
+package net.sf.jgloss.live.api;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootApplication
-public class JGlossLive {
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(JGlossLive.class, args);
+import net.sf.jgloss.live.backend.DictionaryLookupService;
+import net.sf.jgloss.live.backend.LookupResult;
+
+/**
+ * Endpoint for dictionary lookups.
+ */
+@RestController
+public class DictionaryLookup {
+    private final DictionaryLookupService lookupService;
+
+    @Autowired
+    DictionaryLookup(DictionaryLookupService lookupService) {
+        this.lookupService = lookupService;
+    }
+
+    @RequestMapping("/lookup/{text}")
+    public LookupResult lookup(@PathVariable String text) {
+        return lookupService.lookup(text);
     }
 }

@@ -19,14 +19,28 @@
  *
  */
 
-package net.sf.jgloss.live;
+package net.sf.jgloss.live.backend;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+public class DictionaryResultEntry {
+    private final String word;
+    private final String reading;
+    private final String translation;
 
-@SpringBootApplication
-public class JGlossLive {
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(JGlossLive.class, args);
+    DictionaryResultEntry(String word, String reading, String translation) {
+        this.word = word;
+        this.reading = reading;
+        this.translation = translation;
+    }
+
+    public String getWord() {
+        return word;
+    }
+
+    public String getReading() {
+        return reading;
+    }
+
+    public String getTranslation() {
+        return translation;
     }
 }

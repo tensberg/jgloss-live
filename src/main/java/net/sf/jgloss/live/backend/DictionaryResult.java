@@ -19,14 +19,25 @@
  *
  */
 
-package net.sf.jgloss.live;
+package net.sf.jgloss.live.backend;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.List;
 
-@SpringBootApplication
-public class JGlossLive {
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(JGlossLive.class, args);
+public class DictionaryResult {
+    private final String dictionaryName;
+
+    private final List<DictionaryResultEntry> dictionaryEntries;
+
+    public DictionaryResult(String dictionaryName, List<DictionaryResultEntry> dictionaryEntries) {
+        this.dictionaryName = dictionaryName;
+        this.dictionaryEntries = dictionaryEntries;
+    }
+
+    public String getDictionaryName() {
+        return dictionaryName;
+    }
+
+    public List<DictionaryResultEntry> getDictionaryEntries() {
+        return dictionaryEntries;
     }
 }
