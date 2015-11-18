@@ -44,6 +44,7 @@ public class DictionaryFactory {
     @Bean
     public Dictionaries loadDictionaries() {
         try {
+            LOGGER.info("adding EDICT dictionary at {}", edictPath);
             EDict edict = new EDict(new File(edictPath), "EUC-JP");
             edict.loadIndex();
             return new Dictionaries(Collections.singletonList(edict));

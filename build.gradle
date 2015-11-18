@@ -51,5 +51,9 @@ task buildDocker(type: Docker, dependsOn: build) {
             from jar
             into stageDir
         }
+        copy {
+            from 'src/main/dictionaries'
+            into new File(stageDir, 'dictionaries')
+        }
     }
 }
