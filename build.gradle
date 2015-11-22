@@ -13,6 +13,14 @@ apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 apply plugin: 'docker'
 
+sourceSets {
+    main {
+        resources {
+            srcDirs += 'src/main/angular'
+        }
+    }
+}
+
 jar {
     baseName = 'jgloss-live'
     version = '0.1.0'
@@ -33,6 +41,10 @@ dependencies {
     compile 'net.sf.jgloss:jgloss-core:2.1.2'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'com.google.guava:guava:19.0-rc2'
+    compile 'org.webjars.bower:angular-material:1.0.0-rc4'
+    compile 'org.webjars.bower:angular-animate:1.4.7'
+    compile 'org.webjars.bower:angular-aria:1.4.7'
+    compile 'org.webjars.bower:angular-resource:1.4.7'
 
     testCompile 'junit:junit'
     testCompile 'org.mockito:mockito-core'
@@ -56,4 +68,8 @@ task buildDocker(type: Docker, dependsOn: build) {
             into new File(stageDir, 'dictionaries')
         }
     }
+}
+
+bootRun {
+    args = [ '--edictPath=src/main/dictionaries/edict2' ]
 }
