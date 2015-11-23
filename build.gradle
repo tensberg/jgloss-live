@@ -56,7 +56,8 @@ task wrapper(type: Wrapper) {
 }
 
 task buildDocker(type: Docker, dependsOn: build) {
-    applicationName = jar.baseName
+    maintainer = 'Michael Koch <tensberg@gmx.net>'
+    tag = "tensberg/jgloss-live"
     dockerfile = file('src/main/docker/Dockerfile')
     doFirst {
         copy {
