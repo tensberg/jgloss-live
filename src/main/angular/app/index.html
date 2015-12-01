@@ -21,28 +21,59 @@
                 <h1>JGloss Live</h1>
             </md-toolbar>
     
-            <md-content layout-padding layout="row" layout-sm="column"> 
-                <md-input-container>
-                    <label>Search term</label>
-                    <input ng-model="jg.text">
-                </md-input-container>
-                <md-button class="md-primary" ng-click="jg.lookup()" ng-disabled="jg.text==''">Search</md-button>
-            </md-content>
-    
-            <md-content flex layout-padding>
-                <section ng-repeat="dictionary in jg.dictionaryResults">
-    
-                    <md-subheader>Results in {{dictionary.dictionaryName}}</md-subheader>
-    
-                    <md-list>
-                        <md-list-item class="entry" ng-repeat="entry in dictionary.dictionaryEntries">
-                            <span class="entry-word">{{entry.word}}</span>
-                            <span class="entry-reading">[{{entry.reading}}]</span>
-                            <span class="entry-translation">{{entry.translation}}</span>
-                        </md-list-item>
-                    </md-list>
-                </section>
-            </md-content>
+            <md-tabs flex>
+                <md-tab label="Dictionary Lookup">
+                    <md-content layout-padding layout="row" layout-sm="column"> 
+                        <md-input-container>
+                            <label>Search term</label>
+                            <input ng-model="jg.text">
+                        </md-input-container>
+                        <md-button class="md-primary" ng-click="jg.lookup()" ng-disabled="jg.text==''">Search</md-button>
+                    </md-content>
+            
+                    <md-content flex layout-padding>
+                        <section ng-repeat="dictionary in jg.dictionaryResults">
+            
+                            <md-subheader>Results in {{dictionary.dictionaryName}}</md-subheader>
+            
+                            <md-list>
+                                <md-list-item class="entry" ng-repeat="entry in dictionary.dictionaryEntries">
+                                    <span class="entry-word">{{entry.word}}</span>
+                                    <span class="entry-reading">[{{entry.reading}}]</span>
+                                    <span class="entry-translation">{{entry.translation}}</span>
+                                </md-list-item>
+                            </md-list>
+                        </section>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Text Gloss">
+                    <md-content layout-padding>
+                        <p>
+                            not implemented yet
+                        </p>
+                    </md-content>
+                </md-tab>
+                <md-tab label="About">
+                    <md-content layout-padding>
+                        <p>
+                            Experimental web-based version of <a href="http://jgloss.sf.net/">JGloss</a>.
+                            See the <a href="https://github.com/tensberg/jgloss-live">project page</a> for
+                            source code and details.
+                        </p>
+                        <p>
+                            (C) 2015 Michael Koch
+                        </p>
+                        <p>
+                            This package uses the 
+                            <a href="http://www.csse.monash.edu.au/~jwb/edict.html">EDICT</a> dictionary file.
+                            The file is the property of the <a href="http://www.edrdg.org/"> Electronic Dictionary 
+                            Research and Development Group</a>, and are used in
+                            conformance with the Group's 
+                            <a href="http://www.edrdg.org/edrdg/licence.html">licence</a>.
+                        </p>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
 
         </div>
 
