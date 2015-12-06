@@ -3,7 +3,7 @@ JGloss Live
 
 Web-based version of [JGloss](http://jgloss.sf.net/).
 
-<a href="http://jgloss.cloudwatch.net/">Go To JGloss Live</a>
+<a href="https://jgloss.appname.space/">Go To JGloss Live</a>
 
 [![Build Status](https://travis-ci.org/tensberg/jgloss-live.svg?branch=master)](https://travis-ci.org/tensberg/jgloss-live)
 
@@ -26,7 +26,12 @@ Continuous Deployment
 4. Successful CI build creates Docker image and pushes it to [Docker Hub](https://hub.docker.com/r/tensberg/jgloss-live/).
 5. Push to Docker Hub triggers the redeployment via [Tutum](https://www.tutum.co/).
 6. Tutum redeploys the latest docker image to a server hosted by [Digital Ocean](http://www.digitalocean.com/?refcode=dd0a97e9e286).
-7. <a href="http://jgloss.cloudwatch.net/">New version goes live</a>.
+7. <a href="https://jgloss.appname.space/">New version goes live</a>.
+
+HTTPS
+-----
+
+JGloss Live uses a certificate from <a href="https://letsencrypt.org/">Let's Encrypt</a> for HTTPS. TLS encryption is not configured in Spring Boot's Tomcat, but is provided by a <a href="http://www.haproxy.org/">HAProxy</a> instance, which also provides load balancing.
 
 (C) 2015 Michael Koch <tensberg@gmx.net>
 
