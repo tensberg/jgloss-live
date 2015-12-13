@@ -34,7 +34,13 @@ public class DictionaryLookupServiceTest {
         when(dictionary.getName()).thenReturn("fooDictionary");
         when(entry.getWord(0)).thenReturn("fooWord");
         when(entry.getReading(0)).thenReturn("fooReading");
-        when(entry.getTranslation(0, 0, 0)).thenReturn("fooTranslation");
+        when(entry.getTranslationRomCount()).thenReturn(1);
+        when(entry.getTranslationCrmCount(0)).thenReturn(2);
+        when(entry.getTranslationSynonymCount(0, 0)).thenReturn(1);
+        when(entry.getTranslationSynonymCount(0, 1)).thenReturn(2);
+        when(entry.getTranslation(0, 0, 0)).thenReturn("foo");
+        when(entry.getTranslation(0, 1, 0)).thenReturn("bar");
+        when(entry.getTranslation(0, 1, 1)).thenReturn("baz");
         when(dictionary.search(notNull(SearchMode.class), notNull(Object[].class))).thenReturn(singletonIterator(entry));
     }
 
@@ -51,6 +57,6 @@ public class DictionaryLookupServiceTest {
         DictionaryResultEntry actualEntry = entries.get(0);
         assertThat(actualEntry.getWord()).isEqualTo("fooWord");
         assertThat(actualEntry.getReading()).isEqualTo("fooReading");
-        assertThat(actualEntry.getTranslation()).isEqualTo("fooTranslation");
+        assertThat(actualEntry.getTranslations()).containsExactly("foo", "bar", "baz");
     }
 }

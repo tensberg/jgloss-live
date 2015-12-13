@@ -15,7 +15,7 @@
             <md-list-item class="entry" ng-repeat="entry in dictionary.dictionaryEntries">
                 <span class="entry-word">{{entry.word}}</span>
                 <span class="entry-reading">[{{entry.reading}}]</span>
-                <span class="entry-translation">{{entry.translation}}</span>
+                <span class="entry-translation">{{entry.translations.join(' / ')}}</span>
             </md-list-item>
         </md-list>
     </section>

@@ -21,15 +21,17 @@
 
 package net.sf.jgloss.live.backend;
 
+import java.util.List;
+
 public class DictionaryResultEntry {
     private final String word;
     private final String reading;
-    private final String translation;
+    private final List<String> translations;
 
-    DictionaryResultEntry(String word, String reading, String translation) {
+    DictionaryResultEntry(String word, String reading, List<String> translations) {
         this.word = word;
         this.reading = reading;
-        this.translation = translation;
+        this.translations = translations;
     }
 
     public String getWord() {
@@ -40,7 +42,7 @@ public class DictionaryResultEntry {
         return reading;
     }
 
-    public String getTranslation() {
-        return translation;
+    public List<String> getTranslations() {
+        return translations;
     }
 }

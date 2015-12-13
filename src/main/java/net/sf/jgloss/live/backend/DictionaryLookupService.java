@@ -21,6 +21,7 @@
 
 package net.sf.jgloss.live.backend;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -69,7 +70,15 @@ public class DictionaryLookupService {
             while (entries.hasNext()) {
                 try {
                     DictionaryEntry entry = entries.next();
-                    resultEntries.add(new DictionaryResultEntry(entry.getWord(0), entry.getReading(0), entry.getTranslation(0, 0, 0)));
+                    List<String> translations = new ArrayList<>();
+                    for (int rom = 0; rom < entry.getTranslationRomCount(); rom++) {
+                        for (int crm=0; crm < entry.getTranslationCrmCount(rom); crm++) {
+                            for (int synonym=0; synonym<entry.getTranslationSynonymCount(rom, crm); synonym++) {
+                                translations.add(entry.getTranslation(rom, crm, synonym));
+                            }
+                        }
+                    }
+                    resultEntries.add(new DictionaryResultEntry(entry.getWord(0), entry.getReading(0), translations));
                 } catch (SearchException e) {
                     LOGGER.debug("failed to create dictionary entry", e);
                 }
