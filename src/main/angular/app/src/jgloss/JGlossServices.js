@@ -2,12 +2,12 @@
   'use strict';
 
   angular.module('jglossServices', [ 'ngResource' ])
-         .factory('Lookup', ['$resource', Lookup]);
+         .factory('LookupService', ['$resource', LookupService]);
 
   /**
    * Lookup of a word in the dictionary.
    */
-  function Lookup($resource) {
+  function LookupService($resource) {
       return $resource('/api/lookup/:text');
   }
 

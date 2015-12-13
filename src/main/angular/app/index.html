@@ -22,83 +22,30 @@
             </md-toolbar>
     
             <md-tabs flex>
-                <md-tab label="Dictionary Lookup">
-                    <md-content layout-padding layout="row" layout-sm="column"> 
-                        <md-input-container>
-                            <label>Search term</label>
-                            <input ng-model="jg.text">
-                        </md-input-container>
-                        <md-button class="md-primary" ng-click="jg.lookup()" ng-disabled="jg.text==''">Search</md-button>
-                    </md-content>
-            
-                    <md-content flex layout-padding>
-                        <section ng-repeat="dictionary in jg.dictionaryResults">
-            
-                            <md-subheader>Results in {{dictionary.dictionaryName}}</md-subheader>
-            
-                            <md-list>
-                                <md-list-item class="entry" ng-repeat="entry in dictionary.dictionaryEntries">
-                                    <span class="entry-word">{{entry.word}}</span>
-                                    <span class="entry-reading">[{{entry.reading}}]</span>
-                                    <span class="entry-translation">{{entry.translation}}</span>
-                                </md-list-item>
-                            </md-list>
-                        </section>
-                    </md-content>
+                <md-tab md-on-select="jg.showView('lookup')" label="Dictionary Lookup">
+                    <div ng-view></div>
                 </md-tab>
-                <md-tab label="Text Gloss">
-                    <md-content layout-padding>
-                        <p>
-                            not implemented yet
-                        </p>
-                    </md-content>
+                <md-tab md-on-select="jg.showView('gloss')" label="Text Gloss">
+                    <div ng-view></div>
                 </md-tab>
-                <md-tab label="About">
-                    <md-content layout-padding>
-                        <p>
-                            Experimental web-based version of <a href="http://jgloss.sf.net/">JGloss</a>.
-                            See the <a href="https://github.com/tensberg/jgloss-live">project page</a> for
-                            source code and details.
-                        </p>
-                        <p>
-                            (C) 2015 Michael Koch
-                        </p>
-                        <p>
-                            This package uses the 
-                            <a href="http://www.csse.monash.edu.au/~jwb/edict.html">EDICT</a> dictionary file.
-                            The file is the property of the <a href="http://www.edrdg.org/"> Electronic Dictionary 
-                            Research and Development Group</a>, and are used in
-                            conformance with the Group's 
-                            <a href="http://www.edrdg.org/edrdg/licence.html">licence</a>.
-                        </p>
-                    </md-content>
+                <md-tab md-on-select="jg.showView('about')" label="About">
+                    <div ng-view></div>
                 </md-tab>
             </md-tabs>
 
         </div>
 
         <script src="/webjars/angular/1.4.7/angular.min.js"></script>
+        <script src="/webjars/angular-route/1.4.7/angular-route.min.js"></script>
         <script src="/webjars/angular-animate/1.4.7/angular-animate.min.js"></script>
         <script src="/webjars/angular-aria/1.4.7/angular-aria.min.js"></script>
         <script src="/webjars/angular-resource/1.4.7/angular-resource.min.js"></script>
-        <script type="text/javascript" src="/webjars/angular-material/1.0.0-rc4/angular-material.min.js"></script>
+        <script src="/webjars/angular-material/1.0.0-rc4/angular-material.min.js"></script>
         
         <script src="src/jgloss/JGlossControllers.js"></script>
         <script src="src/jgloss/JGlossServices.js"></script>
         
-        <script type="text/javascript">
-    
-              angular
-                  .module('jglossApp', ['ngMaterial', 'jglossControllers'])
-                  .config(function($mdThemingProvider){
-    
-                          $mdThemingProvider.theme('default')
-                              .primaryPalette('red')
-                              .accentPalette('blue');
-    
-                  });
-    
-        </script>
+        <script src="src/jgloss/JGlossApp.js"></script>
 
     </body>
 </html>
